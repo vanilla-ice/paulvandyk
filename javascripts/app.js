@@ -1,1 +1,168 @@
-!function(){"use strict";var n="undefined"==typeof window?global:window;if("function"!=typeof n.require){var e={},r={},i={}.hasOwnProperty,t={},o=function(n,e){var r=0;e&&(e.indexOf(!1)&&(r="components/".length),e.indexOf("/",r)>0&&(e=e.substring(r,e.indexOf("/",r))));var i=t[n+"/index.js"]||t[e+"/deps/"+n+"/index.js"];return i?"components/"+i.substring(0,i.length-".js".length):n},l=function(){var n=/^\.\.?(\/|$)/;return function(e,r){var i,t,o=[];i=(n.test(r)?e+"/"+r:r).split("/");for(var l=0,a=i.length;a>l;l++)t=i[l],".."===t?o.pop():"."!==t&&""!==t&&o.push(t);return o.join("/")}}(),a=function(n){return n.split("/").slice(0,-1).join("/")},s=function(e){return function(r){var i=l(a(e),r);return n.require(i,e)}},u=function(n,e){var i={id:n,exports:{}};return r[n]=i,e(i.exports,s(n),i),i.exports},c=function(n,t){var a=l(n,".");if(null==t&&(t="/"),a=o(n,t),i.call(r,a))return r[a].exports;if(i.call(e,a))return u(a,e[a]);var s=l(a,"./index");if(i.call(r,s))return r[s].exports;if(i.call(e,s))return u(s,e[s]);throw new Error('Cannot find module "'+n+'" from "'+t+'"')};c.alias=function(n,e){t[e]=n},c.register=c.define=function(n,r){if("object"==typeof n)for(var t in n)i.call(n,t)&&(e[t]=n[t]);else e[n]=r},c.list=function(){var n=[];for(var r in e)i.call(e,r)&&n.push(r);return n},c.brunch=!0,n.require=c}}(),require.register("initialize",function(n,e,r){$(document).ready(function(){var n;return inlineSVG.init(),$(".header").find("li").click(function(){return $("li").removeClass("current"),$(this).addClass("current")}),$(".slider").slick({infinite:!1,focusOnSelect:!0,arrows:!1,dots:!0,variableWidth:!0}),$(".slider").find(".slick-dots").detach().prependTo(".slider-inner"),$(".slick-dots").find("li").click(function(){return $("li").removeClass("slick-active"),$(this).addClass("slick-active")}),n=WaveSurfer.create({container:"#wave",waveColor:"blue",progressColor:"#0b63ed"}),$(".play").click(function(){return $(".play").hasClass("onPlay")===!1?($(".play").addClass("onPlay"),n.play()):($(".play").removeClass("onPlay"),n.pause()),n.on("audioprocess",setInterval(function(){var e,r,i;e=n.getCurrentTime(),r=Math.floor(e/60),i=Math.floor(e)-60*r,10>r?$(".time").find(".min").html("0"+r):$(".time").find(".min").html(r),10>i?$(".time").find(".sec").html("0"+i):$(".time").find(".sec").html(i)},950))}),n.load("../music/Boulevard Depo - OCB (Original Mix) (1).mp3")})});
+(function() {
+  'use strict';
+
+  var globals = typeof window === 'undefined' ? global : window;
+  if (typeof globals.require === 'function') return;
+
+  var modules = {};
+  var cache = {};
+  var has = ({}).hasOwnProperty;
+
+  var aliases = {};
+
+  var endsWith = function(str, suffix) {
+    return str.indexOf(suffix, str.length - suffix.length) !== -1;
+  };
+
+  var unalias = function(alias, loaderPath) {
+    var start = 0;
+    if (loaderPath) {
+      if (loaderPath.indexOf('components/' === 0)) {
+        start = 'components/'.length;
+      }
+      if (loaderPath.indexOf('/', start) > 0) {
+        loaderPath = loaderPath.substring(start, loaderPath.indexOf('/', start));
+      }
+    }
+    var result = aliases[alias + '/index.js'] || aliases[loaderPath + '/deps/' + alias + '/index.js'];
+    if (result) {
+      return 'components/' + result.substring(0, result.length - '.js'.length);
+    }
+    return alias;
+  };
+
+  var expand = (function() {
+    var reg = /^\.\.?(\/|$)/;
+    return function(root, name) {
+      var results = [], parts, part;
+      parts = (reg.test(name) ? root + '/' + name : name).split('/');
+      for (var i = 0, length = parts.length; i < length; i++) {
+        part = parts[i];
+        if (part === '..') {
+          results.pop();
+        } else if (part !== '.' && part !== '') {
+          results.push(part);
+        }
+      }
+      return results.join('/');
+    };
+  })();
+  var dirname = function(path) {
+    return path.split('/').slice(0, -1).join('/');
+  };
+
+  var localRequire = function(path) {
+    return function(name) {
+      var absolute = expand(dirname(path), name);
+      return globals.require(absolute, path);
+    };
+  };
+
+  var initModule = function(name, definition) {
+    var module = {id: name, exports: {}};
+    cache[name] = module;
+    definition(module.exports, localRequire(name), module);
+    return module.exports;
+  };
+
+  var require = function(name, loaderPath) {
+    var path = expand(name, '.');
+    if (loaderPath == null) loaderPath = '/';
+    path = unalias(name, loaderPath);
+
+    if (has.call(cache, path)) return cache[path].exports;
+    if (has.call(modules, path)) return initModule(path, modules[path]);
+
+    var dirIndex = expand(path, './index');
+    if (has.call(cache, dirIndex)) return cache[dirIndex].exports;
+    if (has.call(modules, dirIndex)) return initModule(dirIndex, modules[dirIndex]);
+
+    throw new Error('Cannot find module "' + name + '" from '+ '"' + loaderPath + '"');
+  };
+
+  require.alias = function(from, to) {
+    aliases[to] = from;
+  };
+
+  require.register = require.define = function(bundle, fn) {
+    if (typeof bundle === 'object') {
+      for (var key in bundle) {
+        if (has.call(bundle, key)) {
+          modules[key] = bundle[key];
+        }
+      }
+    } else {
+      modules[bundle] = fn;
+    }
+  };
+
+  require.list = function() {
+    var result = [];
+    for (var item in modules) {
+      if (has.call(modules, item)) {
+        result.push(item);
+      }
+    }
+    return result;
+  };
+
+  require.brunch = true;
+  globals.require = require;
+})();
+require.register("initialize", function(exports, require, module) {
+$(document).ready(function() {
+  var wavesurfer;
+  inlineSVG.init();
+  $('.header').find('li').click(function() {
+    $('li').removeClass('current');
+    return $(this).addClass('current');
+  });
+  $('.slider').slick({
+    infinite: false,
+    focusOnSelect: true,
+    arrows: false,
+    dots: true,
+    variableWidth: true
+  });
+  $('.slider').find('.slick-dots').detach().prependTo('.slider-inner');
+  $('.slick-dots').find('li').click(function() {
+    $('li').removeClass('slick-active');
+    return $(this).addClass('slick-active');
+  });
+  wavesurfer = WaveSurfer.create({
+    container: '#wave',
+    waveColor: 'blue',
+    progressColor: '#0b63ed',
+    backend: 'MediaElement'
+  });
+  $('.play').click(function() {
+    if ($('.play').hasClass('onPlay') === false) {
+      $('.play').addClass('onPlay');
+      wavesurfer.play();
+    } else {
+      $('.play').removeClass('onPlay');
+      wavesurfer.pause();
+    }
+    return wavesurfer.on('audioprocess', setInterval((function() {
+      var progress, progressMin, progressSec;
+      progress = wavesurfer.getCurrentTime();
+      progressMin = Math.floor(progress / 60);
+      progressSec = (Math.floor(progress)) - (progressMin * 60);
+      if (progressMin < 10) {
+        $('.time').find('.min').html('0' + progressMin);
+      } else {
+        $('.time').find('.min').html(progressMin);
+      }
+      if (progressSec < 10) {
+        $('.time').find('.sec').html('0' + progressSec);
+      } else {
+        $('.time').find('.sec').html(progressSec);
+      }
+    }), 950));
+  });
+  return wavesurfer.load('../music/Boulevard Depo - OCB (Original Mix) (1).mp3');
+});
+});
+
+;
+//# sourceMappingURL=app.js.map
