@@ -1,0 +1,63 @@
+.invite
+  position: relative
+  top: -300px
+  z-index: 2
+  +mobile
+  .container
+    .inner
+      min-height: 600px
+      width: 90%
+      background: url('../images/paul.png') no-repeat center center
+      background-size: cover
+      box-shadow: 0 0 8px 3px #000
+      padding: Rem(60)
+      position: relative
+      +mobile
+        width: 100%
+        min-height: Rem(400)
+        padding: Rem(30)
+      .title
+        font-size: Rem(50)
+        line-height: Rem(50)
+        letter-spacing: Rem(1)
+        position: relative
+        width: Rem(325)
+        +mobile
+          width: Rem(195)
+          font-size: Rem(30)
+          line-height: Rem(30)
+
+        span
+          color: $blue
+          font-size: Rem(80)
+          letter-spacing: Rem(15)
+          line-height: 0
+          position: absolute
+          bottom: -10%
+          +mobile
+            font-size: Rem(45)
+            letter-spacing: Rem(10)
+        .line
+          width: Rem(3)
+          height: Rem(30)
+          background: $blue
+          position: absolute
+          right: 0
+          top: 0
+          +mobile
+            width: Rem(2)
+      .button
+        font-family: 'AvantGarde LT CondMedium'
+        position: absolute
+        bottom: Rem(60)
+        padding: Rem(10) Rem(15)
+        border: 2px solid white
+        border-radius: 40px
+        font-weight: bold
+        cursor: pointer
+        transition: all 0.5s ease
+        user-select: none
+        &:hover
+          color: $blue
+          border: 2px solid $blue
+

@@ -1,0 +1,64 @@
+
+.header 
+  position: absolute
+  width: 100%
+  padding: Rem(30) 0
+  top: 0
+  left: 0
+  z-index: 10
+  .container
+    white-space: nowrap 
+
+
+    .logo
+      font-family: 'AvantGarde LT CondMedium'
+      display: inline-block
+      font-size: Rem(30)
+      line-height: Rem(35)
+      vertical-align: middle
+      width: 21%
+    nav
+      display: inline-block
+      vertical-align: middle
+      width: 79%
+      @import '_button'
+      #line
+        +hide 
+          display: block
+      ul
+      
+        list-style: none
+        padding: 0
+        margin: 0
+        width: 100%
+        
+        text-align: right
+        white-space: nowrap
+        +hide 
+          display: none
+        
+        li 
+          display: inline-block
+          overflow: hidden
+          vertical-align: middle
+          height: 100%
+          position: relative
+          &:not(:last-of-type)
+            margin-right: 2%
+
+          a 
+            text-decoration: none
+            color: white
+            font-size: Rem(13)
+            outline: none
+            top: 20%
+            font-family: 'AvantGarde LT CondBook'
+            font-weight: bold
+            transition: color 0.5s ease
+        .current
+          a 
+            color: $blue
+            
+              
+
+

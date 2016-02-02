@@ -1,0 +1,99 @@
+.player
+  margin-top: Rem(40)
+  +mobile
+    margin-top: Rem(25)
+  .inner
+    height: Rem(100)
+    width: 90%
+    background: #1a1a1a
+    +mobile
+      width: 100%
+    div
+      display: inline-block
+      height: 100%
+      vertical-align: top
+    .image
+    
+      width: 10%
+      +mobile
+        display: none
+    .ui-icons
+      width: 15%
+      position: relative
+      +mobile
+        width: 40%
+      .time
+        position: absolute
+        bottom: Rem(10)
+        width: 100%
+        text-align: center
+        height: initial
+      .inner-icons
+        width: 100%
+        height: 24px
+        position: absolute
+        top: 50%
+        transform: translateY(-80%)
+        
+        div
+          display: inline-block
+          width: 33.3%
+          text-align: center
+          cursor: pointer
+          opacity: 0.6
+          transition: opacity 0.5s ease
+          &:hover
+            opacity: 1
+          svg
+            width: 35%
+            vertical-align: middle
+            path
+              fill: white
+        .play
+          position: relative
+          div
+            position: absolute
+            left: 50%
+            top: 50%
+            transform: translate(-50%, -50%)
+            opacity: 0
+            transition: opacity 0s 
+            svg
+              width: 100%
+          .active
+            opacity: 1
+    .duration
+
+      width: 35%
+      overflow: hidden
+      +mobile
+        display: none
+      canvas 
+        height: 80%
+    .name
+      width: 40%
+      +mobile
+        width: 60%
+      &-title
+
+        font-size: Rem(16)
+        display: block
+        height: initial
+        margin-top: Rem(25)
+        font-weight: bold
+        margin-left: Rem(15)
+        +mobile
+          font-size: Rem(14)
+          margin-left: 0
+          margin-top: rem(10)
+          line-height: rem(20)
+      &-description
+        height: initial
+        margin-top: Rem(10)
+        font-size: Rem(14)
+        color: $green
+        display: block
+        margin-left: Rem(15)
+        +mobile
+          margin-left: 0
+          margin-top: Rem(5)

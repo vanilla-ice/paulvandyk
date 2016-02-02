@@ -1,0 +1,139 @@
+// COLORS
+
+
+$white: #ffffff
+$blue: #0b63ed
+$black: #121212
+
+$red: #FF1A36
+$orange: #ef7d00
+$yellow: #F5A623
+$purple: #a4519a
+$bright-purple: #bd10e0
+$green: #7BCD8D
+$pink: #DB9DD8
+$dark-pink: #BD85BD
+$dark-blue: #4a90e2
+$pink-hr: #F1C3E3
+
+$light-gray: #9F9F9F
+$mid-gray: #666666
+$dark-gray: #9F9F9F
+$gray: #9b9b9b
+
+$gray-form: #A8A8A8
+$gray-form-labels: #9E9E9E
+
+$primary-color: $gray
+
+$base-font-size: 14
+$tablet-font-size: 14
+$mobile-font-size: 12
+
+$neosans: 'NeoSansW1G', sans-serif
+$roboto: 'Roboto', sans-serif
+// Custom
+
+$text-color: $black
+
+$placeholder-color-reversed: rgba(255,255,255,0.4)
+$placeholder-color: rgba(0,0,0,0.3)
+
+$gradient-colors: $orange, $purple
+$cta-background: $bright-purple
+
+
+$helvetica: 'Helvetica', "Open Sans", sans-serif
+$roboto: 'Roboto', sans-serif
+$slab: 'Roboto Slab', sans-serif
+
+
+
+$title: $slab
+$subtitle: $roboto
+$body: $helvetica
+
+
+*
+  box-sizing: border-box
+
+
+.container
+  width: 100%
+  max-width: 1200px
+  min-height: 100%
+  margin: 0 auto
+  position: relative
+  padding: 0 50px
+  text-align: left
+  color: white
+  font-family: 'AvantGarde LT Book'
+  @extend %clearfix
+  +tablet
+    padding: 0 30px
+  +mobile
+    padding: 0 15px
+
+
+
+html,body
+  font-size: #{$base-font-size}px
+  line-height: #{$base-font-size*1.5}px
+  background: $black
+
+  +tablet
+    font-size: #{$tablet-font-size}px
+
+  +mobile
+    font-size: #{$mobile-font-size}px
+
+
+.column
+  display: flex
+  flex-flow: column nowrap
+  justify-content: space-between
+
+.row
+  display: flex
+  flex-flow: row nowrap
+  justify-content: space-between
+
+
+fieldset
+  border: 0
+  margin: 0
+  padding: 0
+
+textarea
+  line-height: 1.6
+  resize: vertical
+
+p
+  color: inherit
+
+@keyframes equilizer
+  0%
+    height: 27px
+    
+  50%
+    height: 13px
+    
+
+  100%
+    height: 27px
+    
+@keyframes equilizerTwo
+  0%
+    height: 13px
+    
+  50%
+    height: 27px
+    
+
+  100%
+    height: 13px
+
+.parallax-mirror
+  z-index: 1 !important
+a 
+  outline: none !important

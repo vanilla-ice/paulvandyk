@@ -1,0 +1,93 @@
+.burger-menu {
+  height: 100%;
+  width: 100%;
+  display: inline-block;
+  position: relative;
+  border-radius: 100%;
+  -webkit-transition: all 500ms;
+  transition: all 500ms;
+  cursor: pointer;
+  user-select: none; 
+  vertical-align: top;
+}
+.burger-menu.open {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+.burger-menu.open:before {
+  margin-top: -1px;
+  top: 50%;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  -webkit-transition: all 240ms, top 500ms, -webkit-transform 500ms 500ms;
+  transition: all 240ms, top 500ms, -webkit-transform 500ms 500ms;
+  transition: all 240ms, top 500ms, transform 500ms 500ms;
+  transition: all 240ms, top 500ms, transform 500ms 500ms, -webkit-transform 500ms 500ms;
+}
+.burger-menu.open:after {
+  margin-bottom: -1px;
+  bottom: 50%;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+  -webkit-transition: all 240ms, bottom 500ms, -webkit-transform 500ms 500ms;
+  transition: all 240ms, bottom 500ms, -webkit-transform 500ms 500ms;
+  transition: all 240ms, bottom 500ms, transform 500ms 500ms;
+  transition: all 240ms, bottom 500ms, transform 500ms 500ms, -webkit-transform 500ms 500ms;
+}
+.burger-menu.open span {
+  background-color: transparent;
+}
+.burger-menu span,
+.burger-menu:before,
+.burger-menu:after {
+  content: '';
+  background: white;
+  height: 2px;
+  display: block;
+  position: absolute;
+  width: 50%;
+  left: 25%;
+}
+.burger-menu span {
+  top: 50%;
+  margin-top: -1px;
+  -webkit-transition: background-color;
+  transition: background-color;
+  -webkit-transition-delay: 500ms;
+          transition-delay: 500ms;
+}
+.burger-menu:before {
+  top: 33%;
+  -webkit-transition: all 240ms, top 500ms 500ms, -webkit-transform 500ms;
+  transition: all 240ms, top 500ms 500ms, -webkit-transform 500ms;
+  transition: all 240ms, top 500ms 500ms, transform 500ms;
+  transition: all 240ms, top 500ms 500ms, transform 500ms, -webkit-transform 500ms;
+}
+.burger-menu:after {
+  bottom: 33%;
+  -webkit-transition: all 240ms, bottom 500ms 500ms, -webkit-transform 500ms;
+  transition: all 240ms, bottom 500ms 500ms, -webkit-transform 500ms;
+  transition: all 240ms, bottom 500ms 500ms, transform 500ms;
+  transition: all 240ms, bottom 500ms 500ms, transform 500ms, -webkit-transform 500ms;
+}
+#line {
+  text-align: right;
+  display: none;
+  width: 100%;
+  
+}
+#line > div {
+  display: inline-block;
+}
+
+#line #my-button-2 {
+  width: 60px;
+  height: 60px;
+}
+#line #my-button-2 .burger-menu {
+  background: transparent;
+}
+#line #my-button-2 .burger-menu.open {
+  -webkit-transform: rotate(-360deg);
+          transform: rotate(-360deg);
+}

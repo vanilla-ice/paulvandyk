@@ -1,0 +1,120 @@
+.next-shows
+  position: relative
+  z-index: 2
+  top: -250px
+  .container
+    
+    .title
+      font-size: Rem(35)
+      font-family: "AvantGarde LT CondMedium"
+      font-weight: bold
+      +mobile
+        font-size: Rem(20)
+    .inner
+      text-align: right
+      position: relative
+      width: 100%
+      .slick-dots
+        li 
+          width: 10px
+          height: 10px
+          border-radius: 50%
+          background: rgba(255,255,255,0.4)
+          transition: background 0.5s ease
+          &:hover
+            background: rgba(255,255,255,0.7)
+        .slick-active
+          background: rgba(255,255,255,0.7)
+
+      .feedback
+        color: white
+        text-decoration: none
+        position: absolute
+        left: -105px
+        top: 165px
+      
+        transform: rotate(-90deg)
+        +mobile
+          top: 110px
+      .slider
+        display: inline-block
+        width: 90%
+        text-align: left
+        margin-top: Rem(40)
+        .slick-list
+          padding: 0 !important
+        .slide
+          background: #1b1b1b
+          display: inline-block
+          outline: none !important
+          min-height: Rem(280)
+          margin-right: Rem(20)
+          white-space: nowrap
+          width: 400px
+          border: 4px solid transparent
+          position: relative
+          padding: Rem(20)
+          transition: all 0.5s ease
+          +mobile
+            min-height: Rem(200)
+            width: Rem(200)
+          .title
+            font-size: Rem(25)
+            line-height: Rem(25)      
+            position: relative
+            +mobile
+              font-size: Rem(20)
+              line-height: Rem(20)
+          .line
+            width: 15%
+            height: 3px
+            background: white
+            margin-top: Rem(15)
+            +mobile
+              width: 40%
+              height: Rem(2)
+          .description
+            margin-top: Rem(15)
+            +mobile
+              white-space: pre-wrap
+
+          .info
+            position: absolute
+            bottom: Rem(20)
+            color: $blue
+            opacity: 0.2
+            transition: all 0.5s ease
+            +mobile
+              bottom: Rem(5)
+            a
+              text-decoration: none
+              font-weight: bold
+              font-size: Rem(25)
+              line-height: Rem(50)
+              color: $blue
+              vertical-align: bottom
+              display: inline-block
+              font-family: 'AvantGarde LT CondMedium'
+              outline: none
+              +mobile
+                font-size: Rem(18)
+            span
+              font-family: 'AvantGarde LT CondBook'
+              font-weight: normal
+              font-size: Rem(80)
+              line-height: Rem(70)
+              margin-left: Rem(10)
+              display: inline-block
+              vertical-align: top
+              +mobile
+                font-size: Rem(40)
+                vertical-align: top
+                line-height: Rem(40)
+        .slick-active
+          border: 4px solid $blue
+          .info
+            opacity: 1
+           
+            
+              
+              

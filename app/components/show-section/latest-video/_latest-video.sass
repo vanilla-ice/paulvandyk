@@ -1,0 +1,44 @@
+.latest-video 
+  position: relative
+  z-index: 2
+  top: -180px
+  .container
+    .title
+      font-size: Rem(35)
+      font-family: "AvantGarde LT CondMedium"
+      font-weight: bold
+      line-height: Rem(35)
+      width: 100%
+      +mobile
+        font-size: Rem(20)
+        line-height: Rem(35)
+        white-space: nowrap
+      .text
+        width: 50%
+        text-align: left
+        display: inline-block
+      .equalizer
+        width: 40%
+        text-align: right
+        display: inline-block
+        +mobile
+          width: 50%
+        div
+          display: inline-block
+          width: 3px
+          
+          background: $blue
+          vertical-align: top
+         
+          animation: equilizer infinite 5s ease
+          &:first-of-type
+            margin-right: 4px
+            animation: equilizerTwo infinite 3s ease
+    iframe
+      min-height: 500px
+      width: 90%
+      margin-top: Rem(20)
+      +mobile
+        width: 100%
+        min-height: 200px
+

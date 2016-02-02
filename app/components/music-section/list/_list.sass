@@ -1,0 +1,53 @@
+.list
+  margin-top: Rem(40)
+  +mobile
+    margin-top: rem(25)
+  .inner
+
+    width: 90%
+    background: #1a1a1a
+    padding: Rem(40)
+    text-align: right
+    position: relative
+    +mobile
+      padding: Rem(30)
+    +mobile
+      width: 100%
+    .list-title-album
+      position: absolute
+      left: -50px
+      top: 50% 
+      transform: rotate(-90deg) translateY(-50%)
+      
+
+
+    ul
+      width: 90%
+      display: inline-block
+      list-style: none
+      padding: 0
+      margin: 0
+      text-align: left
+      +mobile
+        width: 95%
+      .active
+        color: $blue 
+      
+      li 
+        font-size: Rem(16)
+        font-weight: normal
+        cursor: pointer
+        transition: color 0.5s ease
+        +mobile
+          font-size: Rem(14)
+        &:not(:first-of-type)
+          margin-top: Rem(30)
+          +mobile
+            margin-top: Rem(15)
+        .title-music
+          display: inline-block
+        .description-music
+          display: inline-block
+          margin-left: 5px
+          color: $green
+
